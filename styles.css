@@ -69,13 +69,10 @@ body {
   aspect-ratio: 1/1;
   border: 1px solid black;
   margin: 3px;
-  font-size:1em;
+  font-size:clamp(0.66em,1vw,1vw);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0px 0px 20px 10px rgba(80, 80, 80, 0.33),
-  inset 0px 0px 5px 1px rgba(45, 45, 45,0.2),
-  inset 0px 0px 10px 15px rgba(0, 0, 0, 0.1);
   background: white;
 }
 .inventory-title {
@@ -230,7 +227,7 @@ body {
   position: absolute;
   border-top: 4px solid black;
   border-bottom: 4px solid black;
-  width:clamp(800px,50vw,1100px);
+  width:clamp(300px,66vw,1100px);
   transform: scaleX(0%);
   aspect-ratio: 10/2;
   overflow:hidden;
@@ -274,7 +271,7 @@ body {
   transition: transform 0.33s ease-out;
 
   padding:2%;
-  font-size:2em;
+  font-size:min(8vh,4vw);
   color:white;
   text-align: center;
 
@@ -291,11 +288,12 @@ body {
   outline: none;
   border: 3px white solid;
   border-radius: 10px;
-  width:15%;
+  width:25%;
   color: white;
   aspect-ratio: 3/1;
   transition: background-color 0.33s;
   cursor:pointer;
+  font-size:33%;
 }
 #info-div {
   position: absolute;
@@ -308,7 +306,7 @@ body {
 }
 .info {
   display: block;
-  font-size: clamp(18px,1vw,420px);
+  font-size: clamp(14px,min(4vh,4vw),420px);
 }
 .test-info {
   font-size: 66%;
@@ -358,15 +356,12 @@ body {
 .item-name {
   font-family: OpenSans;
   font-weight: bold;
-  font-size:clamp(1em,1vw,1vw);
+  font-size:clamp(0.66em,1vw,1vw);
   width:100%;
   height:100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0px 0px 60px 30px rgba(80, 80, 80, 0.1),
-  inset 0px 0px 5px 1px rgba(45, 45, 45,0.2),
-  inset 0px 0px 50px 25px rgba(0, 0, 0, 0.33);
     
 }
 @keyframes spin {
@@ -381,8 +376,11 @@ body {
   box-shadow: inset -1px -1px 0px 0px black;
 }
 #wallet-div {
+  position: absolute;
+  display: inline;
+  top:10%;
   user-select: none;
-  font-size:2.5vw;
+  font-size:min(4vh,2.5vw);
   animation: shake-anim 1s ease-in-out infinite;
   transform: rotate(var(--wallet-deg))
 }
@@ -390,6 +388,7 @@ body {
   width: clamp(250px,33vw,33vw);
   aspect-ratio: 3/1;
   margin-top:auto;
+  transform: translateY(-50%);
   font-size:clamp(2.5em, 5vw, 5vw);
   border: black solid 2px;
   border-radius: 0.5vw;
@@ -406,7 +405,7 @@ body {
 #money-button:active {
   color: white;
   box-shadow: 0vw 0vw 0px 0px black;
-  transform: translateY(2vw);
+  transform: translateY(-30%);
 }
 
 @keyframes shake-anim {
