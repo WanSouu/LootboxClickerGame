@@ -1,0 +1,419 @@
+@font-face {
+  font-family: "OpenSans";
+  src: url("assets/fonts/OpenSans-Regular.ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  src: url("assets/fonts/OpenSans-Bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "OpenSans";
+  src: url("assets/fonts/OpenSans-Light.ttf");
+  font-weight: lighter;
+}
+:root {
+  --wallet-deg: 5deg;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow-x:hidden;
+
+  background: white;
+}
+
+#top-wrapper {
+  height:50vh;
+  width:100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position:absolute;
+  left:0;
+  top:0;
+}
+
+
+
+.font-regular {
+  font-family: OpenSans;
+}
+.font-bold {
+  font-family: OpenSans;
+  font-weight: bold;
+}
+
+#inventory-wrapper {
+  height:90%;
+  width:45%;
+  position:absolute;
+  top:0;
+  text-align: center;
+  right:0;
+}
+
+#inventory-item-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+  height:auto;
+}
+
+.inventory-item {
+  width:calc(20% - 8px);
+  aspect-ratio: 1/1;
+  border: 1px solid black;
+  margin: 3px;
+  font-size:1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px 0px 20px 10px rgba(80, 80, 80, 0.33),
+  inset 0px 0px 5px 1px rgba(45, 45, 45,0.2),
+  inset 0px 0px 10px 15px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+.inventory-title {
+  
+  text-overflow: ellipsis;
+  font-size:min(4vw,4vh);
+  border-bottom: 10px solid black;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  background: white;
+  border-radius: 0px 0px 10px 10px;
+  display:  block;
+  height:min(5vw,5vh);
+}
+#shop-list {
+  width: 45%;
+  display:inline-block;
+}
+#shop-wrapper {
+  max-height:40%;
+  overflow-x:visible;
+  width:75vw;
+  bottom:0;
+  position:absolute;
+
+  
+  
+  border-top: black 10px solid;
+  border-radius: 10px;
+  transition: max-height 0.33s;
+  transition-delay: 0s;
+}
+.shop-open {
+  
+  max-height:80% !important;
+  transition: max-height 0.33s !important;
+  transition-delay: 0.2s !important;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+.shop-hover {
+  position:absolute;
+  margin:0 !important;
+  padding:0;
+  left:0;
+  top:0;
+  
+  width:100%;
+  height:100%;
+  transform: translateX(0%);
+  padding-left:1%;
+  transition: transform 0.33s ease-in;
+  z-index:-3;
+}
+.shop-item:hover > .shop-hover {
+  transform: translateX(0%);
+}
+
+.shop-hover-inner {
+  width:100%;
+  height:100%;
+  background: gray;
+  font-size:0.66em;
+  text-align: center;
+}
+
+.shop-item {
+  overflow: hidden;
+  margin:auto;
+  display:flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  width:100%;
+  height:auto;
+  color:black;
+  border: 2px black solid;
+  margin-bottom: 1vh;
+  padding: 1vh 1vw;
+  border-radius: 5px;
+  min-height:40px;
+  user-select: none;
+  margin-top:2%;
+  position:relative;
+  transition: padding-bottom 0.33s ease-in;
+  background: white;
+  z-index:1;
+  font-size:max(16px,2vw);
+}
+.shop-item > * {
+  font-size:clamp(0.75em,1vw,1vw);
+  margin: 0 1%;
+}
+.shop-item > .item-left {
+  text-align: left;
+  width: 60%;
+  z-index:-2;
+}
+.shop-item > .item-right {
+  text-align: right;
+  width: 35%;
+  z-index:1;
+}
+#toggle-nightmode {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width:10%;
+  height: 10%;
+  border: 2px black solid;
+}
+
+.shop-item-button {
+  z-index: 3 !important;
+  cursor:pointer;
+  min-height:55%;
+  text-align: center !important;
+  border: black 2px solid;
+  border-radius: 5px;
+  background: none;
+  overflow:hidden;
+  transition: box-shadow 0.1s;
+  box-shadow: inset 1px 1px 0px 0px black;
+}
+.shop-item-desc {
+  font-size:66%;
+}
+#bottom-wrapper {
+  user-select: none;
+  position:absolute; 
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#lootbox-wrapper {
+  top:0;
+  position: absolute;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+  width:clamp(800px,50vw,1100px);
+  transform: scaleX(0%);
+  aspect-ratio: 10/2;
+  overflow:hidden;
+  user-select: none;
+  z-index: -1;
+  transition: transform 0.2s;
+  transition-delay: 0s;
+}
+#lootbox-pointer {
+  height: 100%;
+  width:50%;
+  transform: translateY(-100%);
+  border-right: 4px black solid;
+}
+#lootbox-spinner {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  max-width:100%;
+  overflow:hidden;
+  white-space: nowrap;
+  user-select: none;
+  padding-right: 36.5%;
+  padding-left:36.5%;
+  transition: padding-right 1s, padding-left 0s;
+}
+#loot-card {
+  border:white 10px solid;
+  border-radius: 10px;
+  height:clamp(30vh,auto,75vh);
+  width:50vw;
+  top: 50vh;
+  position:fixed;
+  z-index: 1000;
+  transform: translateY(-50%) scale(0);
+  background-color: #000000e9;
+  outline-color: black;
+  outline-width:  thick;
+  outline-style: solid;
+  transition: transform 0.33s ease-out;
+
+  padding:2%;
+  font-size:2em;
+  color:white;
+  text-align: center;
+
+  user-select: none;
+}
+.loot-card-buttons {
+  margin:auto;
+  margin-top:5%;
+  display:flex;
+  justify-content: space-evenly;
+}
+.loot-card-button {
+  background: rgba(0, 0, 0, 0);
+  outline: none;
+  border: 3px white solid;
+  border-radius: 10px;
+  width:15%;
+  color: white;
+  aspect-ratio: 3/1;
+  transition: background-color 0.33s;
+  cursor:pointer;
+}
+#info-div {
+  position: absolute;
+  top:2%;
+  left: 1%;
+  height:11vh;
+  user-select: none;
+  width:97vw;
+  pointer-events: none;
+}
+.info {
+  display: block;
+  font-size: clamp(18px,1vw,420px);
+}
+.test-info {
+  font-size: 66%;
+  display:block;
+}
+
+.loot-card-stats {
+  font-size:0.75em;
+  display:block;
+  margin-top:5%;
+  margin-bottom:-5%;
+  text-shadow:
+    0 0 7px var(--clr),
+    0 0 10px var(--clr),
+    0 0 21px var(--clr),
+    0 0 42px var(--clr),
+    0 0 82px var(--clr),
+    0 0 92px var(--clr),
+    0 0 102px var(--clr),
+    0 0 151px var(--clr);
+}
+.loot-card-button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.loot-card-description, .loot-card-button  {
+  margin-top:2%;
+}
+.loot-card-rarity {
+  text-transform: uppercase;
+  font-size:50%;
+}
+#loot-card.open-card {
+  transform: translateY(-50%) scale(1);
+  
+}
+.spinner-open {
+  transform: scaleX(100%) !important;
+  transition-delay: 0.2s !important;
+}
+.lootbox-item {
+  display: inline-block;
+  height: 90%;
+  aspect-ratio: 1/1;
+  border: 10px solid black;
+  border-width: 5px 0px
+}
+.item-name {
+  font-family: OpenSans;
+  font-weight: bold;
+  font-size:clamp(1em,1vw,1vw);
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px 0px 60px 30px rgba(80, 80, 80, 0.1),
+  inset 0px 0px 5px 1px rgba(45, 45, 45,0.2),
+  inset 0px 0px 50px 25px rgba(0, 0, 0, 0.33);
+    
+}
+@keyframes spin {
+  0% {
+    padding-left:36.5%
+  }
+  100% {
+    padding-left:0%
+  }
+}
+.shop-item-button:active {
+  box-shadow: inset -1px -1px 0px 0px black;
+}
+#wallet-div {
+  user-select: none;
+  font-size:2.5vw;
+  animation: shake-anim 1s ease-in-out infinite;
+  transform: rotate(var(--wallet-deg))
+}
+#money-button {
+  width: clamp(250px,33vw,33vw);
+  aspect-ratio: 3/1;
+  margin-top:auto;
+  font-size:clamp(2.5em, 5vw, 5vw);
+  border: black solid 2px;
+  border-radius: 0.5vw;
+  background: white;
+  color: black;
+  transition: color 0.075s ease-in, background 0.075s ease-out, transform 0.075s ease-in, box-shadow 0.075s ease-in;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 2vw 2vw 0px 0px black;
+}
+#money-button:hover {
+  color:rgba(0, 0, 0, 0.5)
+}
+#money-button:active {
+  color: white;
+  box-shadow: 0vw 0vw 0px 0px black;
+  transform: translateY(2vw);
+}
+
+@keyframes shake-anim {
+  50% {
+    transform: rotate(calc(var(--wallet-deg) * -1))
+  }
+  100% {
+    transform: rotate(var(--wallet-deg));
+  }
+}
